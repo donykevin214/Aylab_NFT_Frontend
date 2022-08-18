@@ -18,21 +18,12 @@ const colors = {
   ...baseTheme.colors,
   white: {
     '100': '#FFFFFF',
-    '200': '#F9FAFE',
+    '200': 'rgba(255, 255, 255,0.2)',
   },
   black: '#000000',
-  blue: {
-    '100': '#3A68E7',
-    '200': '#213C86',
-    '300': '#2A4DAD',
-    '400': '#97B3FF',
-    '500': '#F9FAFE',
-    '600': '#D7E1FF',
-  },
-  green: {
-    '200': '#9DDB59',
-  },
-  yellow: { '200': '#EDAB06' },
+  blue: { '100': '#2549FF' },
+  yellow: { '100': 'rgba(255, 170, 30, 1)' },
+  pink: { '100': '#EA32D5' },
 }
 
 const textStyles = {

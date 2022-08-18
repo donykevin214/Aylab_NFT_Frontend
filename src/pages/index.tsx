@@ -1,26 +1,31 @@
 import React from 'react'
-import { Box } from '@chakra-ui/react'
-import { getI18nSSRProps, GetI18nServerSideProps } from '@/utils/i18n'
+import { Flex, Image } from '@chakra-ui/react'
+import loginBg from '@/assets/imgs/loginBg.png'
+import connectWallet from '@/assets/imgs/connectWallet.png'
+import px2vw from '@/utils/px2vw'
+import { useRouter } from 'next/router'
 
-function App() {
+function Index() {
+  const router = useRouter()
   return (
-    <Box
-      maxW={{
-        lg: '1366px',
-      }}
-      minW={{
-        lg: '1024px',
-      }}
-      margin=" 0 auto"
+    <Flex
+      bgImage={loginBg}
+      w="full"
+      h="100vh"
+      flexDir="column"
+      justifyContent="flex-end"
+      bgRepeat="no-repeat"
+      bgSize="100%"
+      bgPos="center"
     >
-      fornt-module
-    </Box>
+      <Image
+        mx="auto"
+        src={connectWallet}
+        mb={px2vw(215)}
+        onClick={() => router.push('/account')}
+      />
+    </Flex>
   )
 }
 
-export const getServerSideProps = async (ctx: GetI18nServerSideProps) => {
-  return {
-    props: { ...(await getI18nSSRProps(ctx, ['home'])) },
-  }
-}
-export default App
+export default Index

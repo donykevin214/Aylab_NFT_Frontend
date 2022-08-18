@@ -3,14 +3,10 @@ import { ChakraProvider } from '@chakra-ui/react'
 import Head from 'next/head'
 import getConfig from 'next/config'
 import type { AppProps } from 'next/app'
-import { appWithTranslation } from 'next-i18next'
 import { ToastContainer } from 'react-toastify'
-
-import { getI18nSSRProps, GetI18nStaticProps } from '@/utils/i18n'
 import theme from '@/theme'
 import '@/styles/global.scss'
 import 'react-toastify/dist/ReactToastify.css'
-import Header from '@/components/Header'
 
 const { publicRuntimeConfig } = getConfig()
 
@@ -38,13 +34,8 @@ function App({ Component, pageProps }: AppProps) {
           href={`${publicRuntimeConfig.cdn}/favicon.ico`}
           type="image/x-icon"
         />
-        <link
-          href={`${publicRuntimeConfig.cdn}/images/apple-touch-icon-144-precomposed.png`}
-          rel="apple-touch-icon-precomposed"
-        />
       </Head>
       <ChakraProvider resetCSS theme={theme}>
-        <Header />
         <Component {...(pageProps ?? {})} />
         <ToastContainer />
       </ChakraProvider>
@@ -52,13 +43,5 @@ function App({ Component, pageProps }: AppProps) {
   )
 }
 
-export const getStaticProps = async (context: GetI18nStaticProps) => {
-  return {
-    props: {
-      ...(await getI18nSSRProps(context, [])),
-    },
-  }
-}
-
 // 这里要注意，切换语言会导致整体 APP 组件卸载再初始化
-export default appWithTranslation(App)
+export default App
