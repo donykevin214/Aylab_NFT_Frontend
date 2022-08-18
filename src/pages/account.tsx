@@ -14,7 +14,7 @@ import { useRouter } from 'next/router'
 
 function Index() {
   const router = useRouter()
-  const [currentAvailable] = useState(8)
+  const [currentAvailable] = useState(0)
   return (
     <Flex
       bgImage={blueBg}
