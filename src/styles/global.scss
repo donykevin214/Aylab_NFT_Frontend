@@ -1,24 +1,36 @@
 // 全局class
-// @font-face {
-//   font-weight: normal;
-//   font-family: 'Bai Jamjuree';
-//   font-style: normal;
-//   src: url('/fonts/BaiJamjuree-Medium.ttf') format('truetype');
-//   font-display: block;
-// }
-// @font-face {
-//   font-weight: normal;
-//   font-family: 'Bai Jamjuree SemiBold';
-//   font-style: normal;
-//   src: url('/fonts/BaiJamjuree-SemiBold.ttf') format('truetype');
-//   font-display: block;
-// }
 
 // 单行文本溢出
 .ellipsis {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+@font-face {
+  font-weight: 400;
+  font-family: 'Helvetica';
+  font-style: normal;
+  src: url('../../public/font/Helvetica.ttc') format('truetype');
+}
+@font-face {
+  font-weight: 700;
+  font-family: 'Helvetica';
+  font-style: normal;
+  src: url('../../public/font/Helvetica.ttc') format('truetype');
+}
+
+@font-face {
+  font-weight: 400;
+  font-family: 'LoRes9OT';
+  font-style: normal;
+  src: url('../../public/font/LoRes9PlusOTNarrowRegular.otf') format('truetype');
+}
+@font-face {
+  font-weight: 700;
+  font-family: 'LoRes9OT';
+  font-style: normal;
+  src: url('../../public/font/LoRes9OTWideBold.otf') format('truetype');
 }
 
 // 清浮动

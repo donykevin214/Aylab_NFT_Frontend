@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Flex, Image, Text } from '@chakra-ui/react'
 import blueBg from '@/assets/imgs/blueBg.png'
 import back from '@/assets/imgs/back.png'
@@ -8,7 +8,6 @@ import highestScore from '@/assets/imgs/highestScore.png'
 import worldIcon from '@/assets/imgs/worldIcon.png'
 import play from '@/assets/imgs/play1.png'
 import tweet from '@/assets/imgs/tweet.png'
-import mint3 from '@/assets/imgs/mint3.png'
 import px2vw from '@/utils/px2vw'
 import { useRouter } from 'next/router'
 
@@ -22,6 +21,7 @@ function Index() {
   const router = useRouter()
   const [currentAvailable] = useState(0)
   const [userAddress] = useState('0x14da4Fc1abD3D749E62C1f5E1Cd219A6e31ecc07')
+  const [userAddressIndex, setUserAddressIndex] = useState(-1)
   const [list] = useState<listItem[]>([
     {
       id: 1,
@@ -70,7 +70,7 @@ function Index() {
     },
     {
       id: 10,
-      address: '0x14da4Fc1abD3D749E62C1f5E1Cd219A6e31ecc06',
+      address: '0x14da4Fc1abD3D749E62C1f5E1Cd219A6e31ecc07',
       points: 100,
     },
     {
@@ -80,7 +80,7 @@ function Index() {
     },
     {
       id: 12,
-      address: '0x14da4Fc1abD3D749E62C1f5E1Cd219A6e31ecc07',
+      address: '0x14da4Fc1abD3D749E62C1f5E1Cd219A6e31ecc06',
       points: 100,
     },
     {
@@ -89,6 +89,15 @@ function Index() {
       points: 100,
     },
   ])
+
+  useEffect(() => {
+    list.map((item: listItem, index: number) => {
+      if (item?.address === userAddress) {
+        setUserAddressIndex(index)
+      }
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [list])
 
   return (
     <Flex
@@ -122,11 +131,11 @@ function Index() {
             alignItems="center"
             bgColor="yellow.100"
             border="3px solid"
-            borderColor="black"
+            borderColor="black.100"
             boxSizing="border-box"
           >
             <Flex w="full" justifyContent="space-between">
-              <Text fontSize={px2vw(21)} color="black">
+              <Text fontSize={px2vw(16)} color="black.100" fontWeight="700" fontFamily="LoRes9OT">
                 CONNECTED
               </Text>
               <Image src={line2} w={px2vw(66)} h={px2vw(3)} my="auto" />
@@ -145,7 +154,7 @@ function Index() {
             content: '""',
             w: 'full',
             h: 'full',
-            bgColor: 'black',
+            bgColor: 'black.100',
             pos: 'absolute',
             left: px2vw(-7),
             bottom: px2vw(-7),
@@ -158,19 +167,25 @@ function Index() {
             justifyContent="space-between"
             alignItems="center"
             border="4px solid"
-            borderColor="black"
+            borderColor="black.100"
             bgColor="blue.100"
             boxSizing="border-box"
             zIndex="1"
           >
             <Image w={px2vw(152)} h={px2vw(60)} src={highestScore} />
-            <Text fontSize={px2vw(48)} color="white.100">
+            <Text fontSize={px2vw(48)} color="white.100" fontWeight="400" fontFamily="LoRes9OT">
               {list[0]?.points}
             </Text>
           </Flex>
         </Flex>
         {/* 列表 */}
-        <Flex flexDir="column" w="full" border="4px solid" borderColor="black" bgColor="yellow.100">
+        <Flex
+          flexDir="column"
+          w="full"
+          border="4px solid"
+          borderColor="black.100"
+          bgColor="yellow.100"
+        >
           {/* 标题 */}
           <Flex
             h={px2vw(82)}
@@ -182,9 +197,11 @@ function Index() {
           >
             <Image src={worldIcon} w={px2vw(35)} h={px2vw(36)} opacity="0" />
             <Flex
-              fontSize={px2vw(21)}
+              fontSize={px2vw(18)}
               lineHeight={px2vw(22)}
-              color="black"
+              color="black.100"
+              fontWeight="700"
+              fontFamily="LoRes9OT"
               flexDir="column"
               textAlign="center"
             >
@@ -201,9 +218,9 @@ function Index() {
                   list.length <= 10
                     ? 'flex'
                     : index < 6 ||
-                      index + 1 === list.length - 2 ||
-                      index + 1 === list.length - 1 ||
-                      index + 1 === list.length
+                      index === userAddressIndex ||
+                      index === userAddressIndex + 1 ||
+                      index === userAddressIndex + 2
                     ? 'flex'
                     : 'none'
                 }
@@ -216,21 +233,41 @@ function Index() {
                 boxSizing="border-box"
                 pos="relative"
               >
-                <Text w={px2vw(60)} fontSize={px2vw(21)} color="blue.100" textAlign="left">
+                <Text
+                  w={px2vw(60)}
+                  fontSize={px2vw(21)}
+                  color="blue.100"
+                  fontWeight="400"
+                  fontFamily="LoRes9OT"
+                  textAlign="left"
+                >
                   #{index + 1}
                 </Text>
-                <Text w={px2vw(80)} fontSize={px2vw(18)} color="black" textAlign="center">
+                <Text
+                  w={px2vw(80)}
+                  fontSize={px2vw(18)}
+                  color="black.100"
+                  fontWeight="400"
+                  textAlign="center"
+                >
                   {item?.address.substring(0, 2)}...
                   {item?.address.substring(item?.address.length - 4, item?.address.length)}
                 </Text>
-                <Text w={px2vw(60)} fontSize={px2vw(21)} color="blue.100" textAlign="right">
+                <Text
+                  w={px2vw(60)}
+                  fontSize={px2vw(21)}
+                  color="blue.100"
+                  fontWeight="400"
+                  fontFamily="LoRes9OT"
+                  textAlign="right"
+                >
                   {item?.points}
                 </Text>
                 {/* 用户自己 */}
                 {item?.address === userAddress && (
                   <Flex
                     border="4px solid"
-                    borderColor="black"
+                    borderColor="black.100"
                     bgColor="blue.100"
                     justifyContent="space-between"
                     alignItems="center"
@@ -242,13 +279,34 @@ function Index() {
                     pl={px2vw(19)}
                     pr={px2vw(20)}
                   >
-                    <Text w={px2vw(60)} fontSize={px2vw(21)} color="yellow.200" textAlign="left">
+                    <Text
+                      w={px2vw(60)}
+                      fontSize={px2vw(21)}
+                      color="yellow.200"
+                      fontWeight="400"
+                      fontFamily="LoRes9OT"
+                      textAlign="left"
+                    >
                       #{index + 1}
                     </Text>
-                    <Text w={px2vw(120)} fontSize={px2vw(17)} color="white.100" textAlign="center">
+                    <Text
+                      w={px2vw(150)}
+                      fontSize={px2vw(16)}
+                      color="white.100"
+                      fontWeight="700"
+                      fontFamily="LoRes9OT"
+                      textAlign="center"
+                    >
                       You are here!
                     </Text>
-                    <Text w={px2vw(60)} fontSize={px2vw(21)} color="yellow.200" textAlign="right">
+                    <Text
+                      w={px2vw(60)}
+                      fontSize={px2vw(21)}
+                      color="yellow.200"
+                      fontWeight="400"
+                      fontFamily="LoRes9OT"
+                      textAlign="right"
+                    >
                       {item?.points}
                     </Text>
                   </Flex>
@@ -264,7 +322,7 @@ function Index() {
                 w="full"
                 justifyContent="center"
                 alignItems="center"
-                color="black"
+                color="black.100"
               >
                 ...
               </Flex>
@@ -278,7 +336,7 @@ function Index() {
           <Flex pos="relative">
             <Flex
               border="3px solid"
-              borderColor="black"
+              borderColor="black.100"
               bgColor="pink.100"
               color="white.100"
               justifyContent="center"
@@ -297,7 +355,42 @@ function Index() {
           <Image w={px2vw(76)} h={px2vw(76)} src={tweet} />
         </Flex>
       ) : (
-        <Image w="full" src={mint3} />
+        <Flex flexDir="column" w="full" h={px2vw(100)}>
+          <Flex
+            justifyContent="center"
+            alignItems="center"
+            w="full"
+            bgColor="black.100"
+            h={px2vw(35)}
+          >
+            <Text
+              color="white.100"
+              opacity="0.6"
+              fontWeight="400"
+              fontFamily="LoRes9OT"
+              fontSize={px2vw(13)}
+            >
+              Uhhh… Seems you’ve Spent all your birds
+            </Text>
+          </Flex>
+          <Flex
+            justifyContent="center"
+            alignItems="center"
+            w="full"
+            bgColor="pink.100"
+            border="5px solid"
+            borderTop="none"
+            borderColor="black.100"
+            color="white.100"
+            fontFamily="LoRes9OT"
+            fontWeight="700"
+            h={px2vw(65)}
+            fontSize={px2vw(21)}
+            onClick={() => router.push('/mintEnd')}
+          >
+            {`Mint here to play  >>>`}
+          </Flex>
+        </Flex>
       )}
     </Flex>
   )

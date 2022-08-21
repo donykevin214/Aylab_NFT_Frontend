@@ -20,10 +20,29 @@ const colors = {
     '100': '#FFFFFF',
     '200': 'rgba(255, 255, 255,0.2)',
   },
-  black: '#000000',
-  blue: { '100': '#2549FF' },
-  yellow: { '100': 'rgba(255, 170, 30, 1)', '200': '#FFAA1E' },
-  pink: { '100': '#EA32D5' },
+  black: {
+    '100': '#000000',
+    '200': 'rgba(0, 0, 0, 0.35)',
+  },
+  red: {
+    '100': '#FF1313',
+  },
+  blue: {
+    '100': '#2549FF',
+    '200': '#1ED0FF',
+    '300': 'rgba(10, 50, 255, 1)',
+  },
+  yellow: {
+    '100': 'rgba(255, 170, 30, 1)',
+    '200': '#FFAA1E',
+  },
+  pink: {
+    '100': '#EA32D5',
+  },
+  green: {
+    '100': '#2FFF38',
+    '200': '#AAFF00',
+  },
 }
 
 const textStyles = {
@@ -76,7 +95,7 @@ const theme = extendTheme({
   config,
   colors,
   fonts: {
-    body: '"Bai Jamjuree Regular", "SF Pro Display", "PingFang SC", "Source Han Sans CN", "Microsoft Yahei"',
+    body: "'Helvetica','LoRes9OT','sans-serif'",
   },
   sizes: {
     xl: '1080px',
