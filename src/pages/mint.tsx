@@ -186,7 +186,7 @@ function Index() {
           fontSize={px2vw(23)}
           h={px2vw(70)}
         >
-          Mint Token
+          Mint Token with Test
         </Flex>
       </Flex>
     </Flex>
