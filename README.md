@@ -1,7 +1,3 @@
-# Please connect to discord
-# `SuperOne#6524`
-# I'm waiting here
-
 
 <!--  -->
 # brum-fe
