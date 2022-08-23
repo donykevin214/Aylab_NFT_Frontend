@@ -1,6 +1,6 @@
-Please connect to discord
-SuperOne#6524
-I'm waiting here
+# Please connect to discord
+# `SuperOne#6524`
+# I'm waiting here
 
 
 <!--  -->
